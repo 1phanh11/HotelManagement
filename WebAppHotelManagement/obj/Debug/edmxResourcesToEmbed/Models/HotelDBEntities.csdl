@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelDB1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BookingStatu">
+    <Key>
+      <PropertyRef Name="BookingStatusId" />
+      <PropertyRef Name="BookingStatus" />
+    </Key>
+    <Property Name="BookingStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookingStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerService">
+    <Key>
+      <PropertyRef Name="ServiceId" />
+    </Key>
+    <Property Name="ServiceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServiceName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ServicePrice" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Invoid">
+    <Key>
+      <PropertyRef Name="InvoidID" />
+    </Key>
+    <Property Name="InvoidID" Type="Int32" Nullable="false" />
+    <Property Name="BookingID" Type="Int32" />
+    <Property Name="BookingAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="ServiceAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DateP" Type="DateTime" Precision="3" />
+    <Property Name="ToTalPayment" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="MonthlyR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MonthS" Type="DateTime" Precision="3" />
+    <Property Name="MonthE" Type="DateTime" Precision="3" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="Int32" Nullable="false" />
+    <Property Name="BookingId" Type="Int32" />
+    <Property Name="PaymentTypeId" Type="Int32" />
+    <Property Name="PaymentAmount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="PaymentType">
+    <Key>
+      <PropertyRef Name="PaymentTypeId" />
+    </Key>
+    <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RoomBooking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="550" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="550" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CustomerPhone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BookingFrom" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BookingTo" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AssignRoomId" Type="Int32" Nullable="false" />
+    <Property Name="NoOfMembers" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="RoomId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RoomImage" Type="String" MaxLength="550" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoomPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BookingStatusId" Type="Int32" Nullable="false" />
+    <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+    <Property Name="RoomCapacity" Type="Int32" Nullable="false" />
+    <Property Name="RoomDescription" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="RoomType">
+    <Key>
+      <PropertyRef Name="RoomTypeId" />
+    </Key>
+    <Property Name="RoomTypeId" Type="Int32" Nullable="false" />
+    <Property Name="RoomTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ServiceServed">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="ServiceID" Type="Int32" Nullable="false" />
+    <Property Name="BookingId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="HotelDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BookingStatus" EntityType="Self.BookingStatu" />
+    <EntitySet Name="CustomerServices" EntityType="Self.CustomerService" />
+    <EntitySet Name="Invoids" EntityType="Self.Invoid" />
+    <EntitySet Name="MonthlyRs" EntityType="Self.MonthlyR" />
+    <EntitySet Name="Payments" EntityType="Self.Payment" />
+    <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+    <EntitySet Name="RoomBookings" EntityType="Self.RoomBooking" />
+    <EntitySet Name="Rooms" EntityType="Self.Room" />
+    <EntitySet Name="RoomTypes" EntityType="Self.RoomType" />
+    <EntitySet Name="ServiceServeds" EntityType="Self.ServiceServed" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <FunctionImport Name="sp_changeActive_InvoidAndRooom">
+      <Parameter Name="InvID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Sp_get_list_roomBooking_id" />
+    <FunctionImport Name="sp_Invoice_ListAll" />
+    <FunctionImport Name="sp_Invoice_ListAll_0" />
+    <FunctionImport Name="sp_Invoice_ListAll_1" />
+    <FunctionImport Name="sp_service_ListAll" ReturnType="Collection(HotelDB1Model.sp_service_ListAll_Result)" />
+  </EntityContainer>
+  <ComplexType Name="sp_service_ListAll_Result">
+    <Property Type="Int32" Name="ServiceId" Nullable="false" />
+    <Property Type="String" Name="ServiceName" Nullable="true" MaxLength="255" />
+    <Property Type="Decimal" Name="ServicePrice" Nullable="true" Precision="18" Scale="2" />
+  </ComplexType>
+</Schema>

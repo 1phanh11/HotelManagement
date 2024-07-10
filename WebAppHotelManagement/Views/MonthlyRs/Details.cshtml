@@ -1,0 +1,43 @@
+﻿@model WebAppHotelManagement.Models.MonthlyR
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MonthlyR</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MonthE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MonthE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
